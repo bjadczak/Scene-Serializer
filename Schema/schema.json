@@ -1,0 +1,79 @@
+{ 
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    
+    "type": "array",
+    "items": {
+        "oneOf": [
+            { "$ref": "#/definitions/geometry/point" },
+            { "$ref": "#/definitions/geometry/torus" }
+        ]
+    },
+
+    "definitions": {
+        
+        "normalizedValue": {
+            "type": "number",
+            "minimum": 0.0,
+            "maximum": 1.0
+        },
+
+        "positiveValue": {
+            "type": "number",
+            "minimum": 0.0
+        },
+
+        "uint": {
+            "type": "integer",
+            "minimum": 0
+        },
+
+        "float3": {
+            "type": "object",
+            "properties" : {
+                "x": { "type": "number" },
+                "y": { "type": "number" },
+                "z": { "type": "number" }
+            },
+            "required": ["x", "y", "z"],
+            "additionalProperties": false
+        },
+
+        "uint2": {
+            "type": "object",
+            "properties" : {
+                "x": { "$ref": "#/definitions/uint" },
+                "y": { "$ref": "#/definitions/uint" }
+            },
+            "required": ["x", "y"],
+            "additionalProperties": false
+        },
+
+        "geometry": {
+            
+            "point": {
+                "type": "object",
+                "properties": {
+                    "objectType":   { "const": "point" },
+                    "id":           { "$ref": "#/definitions/uint" },
+                    "position":     { "$ref": "#/definitions/float3" }
+                },
+                "required": ["objectType", "id", "position"],
+                "additionalProperties": false
+            },
+
+            "torus": {
+                "type": "object",
+                "properties": {
+                    "objectType":   { "const": "torus" },
+                    "id":           { "$ref": "#/definitions/uint" },
+                    "position":     { "$ref": "#/definitions/float3" },
+                    "rotation":     { "$ref": "#/definitions/float3" },
+                    "scale":        { "$ref": "#/definitions/float3" },
+                    "samples":      { "$ref": "#/definitions/uint2" }
+                },
+                "required": ["objectType", "id", "position", "rotation", "scale", "samples"],
+                "additionalProperties": false
+            }
+        }
+    }
+}
