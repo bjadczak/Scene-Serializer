@@ -1,13 +1,24 @@
 { 
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     
-    "type": "array",
-    "items": {
-        "oneOf": [
-            { "$ref": "#/definitions/geometry/point" },
-            { "$ref": "#/definitions/geometry/torus" }
-        ]
+    "type": "object",
+    "properties": {
+        "points": {
+            "type": "array",
+            "items": { "$ref": "#/definitions/geometry/point" }
+        },
+        "geometry": {
+            "type": "array",
+            "items": {
+                "oneOf": [
+                    { "$ref": "#/definitions/geometry/torus" },
+                    { "$ref": "#/definitions/geometry/bezierC0" },
+                    { "$ref": "#/definitions/geometry/bezierC2" }
+                ]
+            }
+        }
     },
+    "additionalProperties": false,
 
     "definitions": {
         
@@ -53,12 +64,25 @@
             "point": {
                 "type": "object",
                 "properties": {
-                    "objectType":   { "const": "point" },
-                    "id":           { "$ref": "#/definitions/uint" },
-                    "position":     { "$ref": "#/definitions/float3" }
+                    "id":       { "$ref": "#/definitions/uint" },
+                    "position": { "$ref": "#/definitions/float3" }
                 },
-                "required": ["objectType", "id", "position"],
+                "required": ["id", "position"],
                 "additionalProperties": false
+            },
+
+            "pointRef": {
+                "type": "object",
+                "properties": {
+                    "id": { "$ref": "#/definitions/uint" }
+                },
+                "required": ["id"],
+                "additionalProperties": false
+            },
+
+            "controlPoints":    {
+                "type": "array",
+                "items": { "$ref": "#/definitions/geometry/pointRef" }
             },
 
             "torus": {
@@ -72,6 +96,28 @@
                     "samples":      { "$ref": "#/definitions/uint2" }
                 },
                 "required": ["objectType", "id", "position", "rotation", "scale", "samples"],
+                "additionalProperties": false
+            },
+
+            "bezierC0": {
+                "type": "object",
+                "properties": {
+                    "objectType":       { "const": "bezierC0" },
+                    "id":               { "$ref": "#/definitions/uint" },
+                    "controlPoints":    { "$ref": "#/definitions/geometry/controlPoints" }
+                },
+                "required": ["objectType", "id", "controlPoints"],
+                "additionalProperties": false
+            },
+
+            "bezierC2": {
+                "type": "object",
+                "properties": {
+                    "objectType":       { "const": "bezierC2" },
+                    "id":               { "$ref": "#/definitions/uint" },
+                    "deBoorPoints":     { "$ref": "#/definitions/geometry/controlPoints" }
+                },
+                "required": ["objectType", "id", "deBoorPoints"],
                 "additionalProperties": false
             }
         }
