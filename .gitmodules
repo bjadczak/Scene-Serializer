@@ -1,0 +1,3 @@
+[submodule "cpp/Serializer/dependencies/.\\valijson"]
+	path = cpp/Serializer/dependencies/.\\valijson
+	url = https://github.com/tristanpenman/valijson.git
