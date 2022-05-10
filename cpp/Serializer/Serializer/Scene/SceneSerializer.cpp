@@ -26,6 +26,7 @@ namespace MG1
 		{
 			auto elementType = element["objectType"].get<std::string>();
 			
+			// TODO: could be done smarter than this massive conditional block
 			if (elementType == "torus")
 			{
 				Torus t = element;
@@ -53,6 +54,7 @@ namespace MG1
 	
 	void SceneSerializer::SaveScene(const Scene& scene, std::filesystem::path path)
 	{
+		// TODO: write the damn method
 	}
 	
 	nlohmann::json SceneSerializer::LoadAndValidate(std::filesystem::path path)
@@ -64,6 +66,7 @@ namespace MG1
 			throw SerializerException("Loading the json file failed");
 		}
 
+		// TODO: think about how the schema file is included - pasting it with every update seems unnecessary
 		nlohmann::json schemaJson = nlohmann::json::parse(g_schema);
 
 		valijson::Schema schema;

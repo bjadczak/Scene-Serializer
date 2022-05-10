@@ -26,6 +26,7 @@ namespace MG1
 		friend class PointRef;
 
 	protected:
+		// TODO: check if this is really necessary - works nice with PointRefs, but it's pretty ugly
 		static std::map<uint32_t, Point*> s_pointMap;
 	};
 }

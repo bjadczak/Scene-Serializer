@@ -44,6 +44,7 @@ namespace MG1
 		
 		auto id = j["id"].get<uint32_t>();
 
+		// TODO: check if the point was not a duplicate - SetId will return false
 		p.SetId(id);
 		p.position = position;
 	}
