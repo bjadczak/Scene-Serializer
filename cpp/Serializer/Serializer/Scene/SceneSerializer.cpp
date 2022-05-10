@@ -18,14 +18,12 @@ namespace MG1
 			throw std::exception("Loading the json file failed");
 		}
 
-		// validate against schema
+		// TODO: validate against schema
 		// parse
 		Scene resultScene;
 
 		for (auto& point : document["points"])
 		{
-			//Point p = point;
-
 			resultScene.points.push_back(point);
 		}
 

@@ -12,7 +12,7 @@ namespace MG1
 		}
 	}
 	
-	std::shared_ptr<Point> PointRef::GetPoint() const
+	Point* PointRef::GetPoint() const
 	{
 		auto result = Point::s_pointMap.find(m_id);
 

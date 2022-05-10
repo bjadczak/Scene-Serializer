@@ -26,6 +26,6 @@ namespace MG1
 		friend class PointRef;
 
 	protected:
-		static std::map<uint32_t, std::shared_ptr<Point>> s_pointMap;
+		static std::map<uint32_t, Point*> s_pointMap;
 	};
 }

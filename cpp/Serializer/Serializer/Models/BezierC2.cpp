@@ -35,7 +35,9 @@ namespace MG1
 
 		for (auto& pointRef : j["deBoorPoints"])
 		{
-			p.controlPoints.push_back(PointRef(pointRef.get<uint32_t>()));
+			auto id = pointRef["id"].get<uint32_t>();
+			auto ref = PointRef(id);
+			p.controlPoints.push_back(ref);
 		}
 
 		p.SetId(j["id"].get<uint32_t>());

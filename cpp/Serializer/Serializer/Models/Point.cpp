@@ -6,12 +6,12 @@
 
 namespace MG1
 {
-	std::map<uint32_t, std::shared_ptr<Point>> Point::s_pointMap = {};
+	std::map<uint32_t, Point*> Point::s_pointMap = {};
 	
 	Point::Point()
 		: SceneObject(), position()
 	{
-		s_pointMap.emplace(std::make_pair(m_id, std::shared_ptr<Point>(this)));
+		s_pointMap.emplace(std::make_pair(m_id, this));
 	}
 
 	bool Point::SetId(uint32_t id)
@@ -24,7 +24,7 @@ namespace MG1
 		}
 
 		s_pointMap.erase(prevId);
-		s_pointMap.emplace(std::make_pair(id, std::shared_ptr<Point>(this)));
+		s_pointMap.emplace(std::make_pair(id, this));
 
 		return true;
 	}
