@@ -6,7 +6,7 @@
 int main()
 {
     MG1::SceneSerializer serializer;
-    auto scene = serializer.LoadScene("./file_example_2.json");
+    auto scene = serializer.LoadScene("./file_example.json");
 
     std::cout << "Hello World!\n";
 }

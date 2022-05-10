@@ -7,19 +7,14 @@
 #include <valijson/schema_parser.hpp>
 #include <valijson/validator.hpp>
 
+#include <Resources/Schema.h>
+
 namespace MG1
 {
 	Scene SceneSerializer::LoadScene(std::filesystem::path path)
 	{
-		// load the json file
-		nlohmann::json document;
-		if (!valijson::utils::loadDocument(path.string(), document))
-		{
-			throw std::exception("Loading the json file failed");
-		}
+		auto document = LoadAndValidate(path);
 
-		// TODO: validate against schema
-		// parse
 		Scene resultScene;
 
 		for (auto& point : document["points"])
@@ -58,5 +53,32 @@ namespace MG1
 	
 	void SceneSerializer::SaveScene(const Scene& scene, std::filesystem::path path)
 	{
+	}
+	
+	nlohmann::json SceneSerializer::LoadAndValidate(std::filesystem::path path)
+	{
+		nlohmann::json document;
+		
+		if (!valijson::utils::loadDocument(path.string(), document))
+		{
+			throw SerializerException("Loading the json file failed");
+		}
+
+		nlohmann::json schemaJson = nlohmann::json::parse(g_schema);
+
+		valijson::Schema schema;
+		valijson::SchemaParser parser;
+		valijson::adapters::NlohmannJsonAdapter schemaAdapter(schemaJson);
+		parser.populateSchema(schemaAdapter, schema);
+
+		valijson::Validator validator;
+		valijson::adapters::NlohmannJsonAdapter sceneAdapter(document);
+		valijson::ValidationResults validationResults;
+		if (!validator.validate(schema, sceneAdapter, &validationResults))
+		{
+			throw SerializerException("Scene file is corrupted.");
+		}
+
+		return document;
 	}
 }

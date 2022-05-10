@@ -167,6 +167,7 @@
     <ClInclude Include="Models\PointRef.h" />
     <ClInclude Include="Models\SceneObject.h" />
     <ClInclude Include="Models\Torus.h" />
+    <ClInclude Include="Resources\Schema.h" />
     <ClInclude Include="Scene\Scene.h" />
     <ClInclude Include="Scene\SceneSerializer.h" />
     <ClInclude Include="Serializable.h" />
