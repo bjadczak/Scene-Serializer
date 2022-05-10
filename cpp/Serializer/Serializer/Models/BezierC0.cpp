@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "BezierC0.h"
 
+#include <iterator>
 #include <nlohmann/json.hpp>
 
 namespace MG1
@@ -9,12 +10,11 @@ namespace MG1
 	{
 		auto points = nlohmann::json::array();
 		
-		for (auto& point : p.controlPoints)
-		{
-			nlohmann::json pointRef = { { "id", point.GetId() } };
-
-			points.push_back(pointRef);
-		}
+		std::transform(
+			p.controlPoints.begin(), p.controlPoints.end(),
+			std::back_inserter(points),
+			[](const PointRef& point) { return nlohmann::json{ { "id", point.GetId() } }; }
+		);
 
 		j = {
 			{ "objectType", "bezierC0" },
