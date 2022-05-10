@@ -13,7 +13,8 @@
                 "oneOf": [
                     { "$ref": "#/definitions/geometry/torus" },
                     { "$ref": "#/definitions/geometry/bezierC0" },
-                    { "$ref": "#/definitions/geometry/bezierC2" }
+                    { "$ref": "#/definitions/geometry/bezierC2" },
+                    { "$ref": "#/definitions/geometry/interpolatedC2" }
                 ]
             }
         }
@@ -122,6 +123,18 @@
                     "deBoorPoints":     { "$ref": "#/definitions/geometry/controlPoints" }
                 },
                 "required": ["objectType", "id", "deBoorPoints"],
+                "additionalProperties": false
+            },
+
+            "interpolatedC2": {
+                "type": "object",
+                "properties": {
+                    "objectType":       { "const": "interpolatedC2" },
+                    "id":               { "$ref": "#/definitions/uint" },
+                    "name":             { "type": "string" },
+                    "controlPoints":    { "$ref": "#/definitions/geometry/controlPoints" }
+                },
+                "required": ["objectType", "id", "controlPoints"],
                 "additionalProperties": false
             }
         }
