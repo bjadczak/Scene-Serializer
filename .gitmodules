@@ -1,6 +1,6 @@
-[submodule "cpp/Serializer/dependencies/.\\valijson"]
-	path = cpp/Serializer/dependencies/.\\valijson
+[submodule "cpp/Serializer/dependencies/valijson"]
+	path = cpp/Serializer/dependencies/valijson
 	url = https://github.com/tristanpenman/valijson.git
 [submodule "cpp/Serializer/dependencies/json"]
 	path = cpp/Serializer/dependencies/json
-	url = https://github.com/nlohmann/json.git
+	url = https://github.com/nlohmann/json
