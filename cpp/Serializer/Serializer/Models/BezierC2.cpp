@@ -17,7 +17,7 @@ namespace MG1
 		);
 
 		j = {
-			{ "objectType", "bezierC0" },
+			{ "objectType", "bezierC2" },
 			{ "id", p.m_id },
 			{ "name", p.name },
 			{ "deBoorPoints", points }
