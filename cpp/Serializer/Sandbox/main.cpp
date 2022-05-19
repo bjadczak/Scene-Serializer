@@ -8,7 +8,7 @@ int main()
     MG1::SceneSerializer serializer;
     auto scene = serializer.LoadScene("./file_example_2.json");
 
-    std::cout << "jak to sie szybko liczy\n";
-
     serializer.SaveScene(scene, "./dupa.json");
+
+    auto sceneAgain = serializer.LoadScene("./dupa.json");
 }
