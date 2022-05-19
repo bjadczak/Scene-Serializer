@@ -55,6 +55,46 @@ namespace MG1
 	void SceneSerializer::SaveScene(const Scene& scene, std::filesystem::path path)
 	{
 		// TODO: write the damn method
+		nlohmann::json dumpDocument;
+
+		auto points = nlohmann::json::array();
+		
+		for (auto& point : scene.points)
+		{
+			points.push_back(point);
+		}
+
+		dumpDocument["points"] = points;
+
+		auto geometry = nlohmann::json::array();
+
+		for (auto& obj : scene.tori)
+		{
+			geometry.push_back(obj);
+		}
+
+		for (auto& obj : scene.bezierC0)
+		{
+			geometry.push_back(obj);
+		}
+
+		for (auto& obj : scene.bezierC2)
+		{
+			geometry.push_back(obj);
+		}
+
+		for (auto& obj : scene.interpolatedC2)
+		{
+			geometry.push_back(obj);
+		}
+
+		dumpDocument["geometry"] = geometry;
+
+		auto jsonString = dumpDocument.dump(1, '\t');
+
+		std::ofstream out(path);
+		out << jsonString;
+		out.close();
 	}
 	
 	nlohmann::json SceneSerializer::LoadAndValidate(std::filesystem::path path)
@@ -72,11 +112,13 @@ namespace MG1
 		valijson::Schema schema;
 		valijson::SchemaParser parser;
 		valijson::adapters::NlohmannJsonAdapter schemaAdapter(schemaJson);
+		
 		parser.populateSchema(schemaAdapter, schema);
 
 		valijson::Validator validator;
 		valijson::adapters::NlohmannJsonAdapter sceneAdapter(document);
 		valijson::ValidationResults validationResults;
+		
 		if (!validator.validate(schema, sceneAdapter, &validationResults))
 		{
 			throw SerializerException("Scene file is corrupted.");
