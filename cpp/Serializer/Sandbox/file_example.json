@@ -40,8 +40,8 @@
                 "x": 10,
                 "y": 12
             },
-            "smallRadius": 1.0,
-            "largeRadius": 3.0
+            "smallRadius": 2.0,
+            "largeRadius": 5.0
         }
     ]
 }
