@@ -7,9 +7,10 @@
 
 namespace MG1
 {
-	struct SerializerException : public std::exception 
+    //std:exception nie powinno miec konstruktora z const char* (rozszerzenie MSVC)
+	struct SerializerException : public std::runtime_error
 	{
-		SerializerException(const char* message) : std::exception(message) { }
+		SerializerException(const char* message) : std::runtime_error(message) { }
 	};
 
 	class SceneSerializer
