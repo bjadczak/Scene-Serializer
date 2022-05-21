@@ -13,4 +13,5 @@ int main()
     std::cout << "jak to sie szybko liczy\n";
 
     serializer.SaveScene("./dupa.json");
+    serializer.LoadScene("./dupa.json");
 }
