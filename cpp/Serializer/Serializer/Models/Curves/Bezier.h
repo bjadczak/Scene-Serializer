@@ -4,8 +4,8 @@
 
 #include <Serializable.h>
 
-#include "SceneObject.h"
-#include "PointRef.h"
+#include <Models/SceneObject.h>
+#include <Models/PointRef.h>
 
 namespace MG1
 {

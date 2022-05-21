@@ -159,13 +159,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Models\Bezier.h" />
-    <ClInclude Include="Models\BezierC0.h" />
-    <ClInclude Include="Models\BezierC2.h" />
-    <ClInclude Include="Models\InterpolatedC2.h" />
+    <ClInclude Include="Models\Curves\Bezier.h" />
+    <ClInclude Include="Models\Curves\BezierC0.h" />
+    <ClInclude Include="Models\Curves\BezierC2.h" />
+    <ClInclude Include="Models\Curves\InterpolatedC2.h" />
     <ClInclude Include="Models\Point.h" />
     <ClInclude Include="Models\PointRef.h" />
     <ClInclude Include="Models\SceneObject.h" />
+    <ClInclude Include="Models\Surfaces\BezierPatch.h" />
+    <ClInclude Include="Models\Surfaces\BezierPatchC0.h" />
+    <ClInclude Include="Models\Surfaces\BezierPatchC2.h" />
+    <ClInclude Include="Models\Surfaces\BezierSurfaceC0.h" />
+    <ClInclude Include="Models\Surfaces\BezierSurfaceC2.h" />
     <ClInclude Include="Models\Torus.h" />
     <ClInclude Include="Resources\Schema.h" />
     <ClInclude Include="Scene\Scene.h" />
@@ -177,12 +182,16 @@
     <ClInclude Include="Utils\Uint2.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Models\BezierC0.cpp" />
-    <ClCompile Include="Models\BezierC2.cpp" />
-    <ClCompile Include="Models\InterpolatedC2.cpp" />
+    <ClCompile Include="Models\Curves\BezierC0.cpp" />
+    <ClCompile Include="Models\Curves\BezierC2.cpp" />
+    <ClCompile Include="Models\Curves\InterpolatedC2.cpp" />
     <ClCompile Include="Models\Point.cpp" />
     <ClCompile Include="Models\PointRef.cpp" />
     <ClCompile Include="Models\SceneObject.cpp" />
+    <ClCompile Include="Models\Surfaces\BezierPatchC0.cpp" />
+    <ClCompile Include="Models\Surfaces\BezierPatchC2.cpp" />
+    <ClCompile Include="Models\Surfaces\BezierSurfaceC0.cpp" />
+    <ClCompile Include="Models\Surfaces\BezierSurfaceC2.cpp" />
     <ClCompile Include="Models\Torus.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -190,6 +199,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Scene\Scene.cpp" />
     <ClCompile Include="Scene\SceneSerializer.cpp" />
     <ClCompile Include="Utils\Float3.cpp" />
     <ClCompile Include="Utils\Uint2.cpp" />

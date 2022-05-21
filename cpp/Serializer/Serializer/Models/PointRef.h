@@ -2,8 +2,6 @@
 
 #include "Point.h"
 
-#include <memory>
-
 namespace MG1
 {
 	class PointRef

@@ -15,8 +15,6 @@
                     { "$ref": "#/definitions/geometry/bezierC0" },
                     { "$ref": "#/definitions/geometry/bezierC2" },
                     { "$ref": "#/definitions/geometry/interpolatedC2" },
-                    { "$ref": "#/definitions/geometry/bezierPatchC0" },
-                    { "$ref": "#/definitions/geometry/bezierPatchC2" },
                     { "$ref": "#/definitions/geometry/bezierSurfaceC0" },
                     { "$ref": "#/definitions/geometry/bezierSurfaceC2" }
                 ]
@@ -167,7 +165,10 @@
                     "objectType":   { "const": "bezierSurfaceC0" },
                     "id":           { "$ref": "#/definitions/uint" },
                     "name":         { "type": "string" },
-                    "patches":      { "$ref": "#/definitions/geometry/controlPoints" }
+                    "patches":      { 
+                        "type": "array",
+                        "items": { "$ref": "#/definitions/geometry/bezierPatchC0" }
+                    }
                 },
                 "required": ["objectType", "id", "patches"],
                 "additionalProperties": false
@@ -188,10 +189,13 @@
             "bezierSurfaceC2": {
                 "type": "object",
                 "properties": {
-                    "objectType":   { "const": "bezierSurfaceC0" },
+                    "objectType":   { "const": "bezierSurfaceC2" },
                     "id":           { "$ref": "#/definitions/uint" },
                     "name":         { "type": "string" },
-                    "patches":      { "$ref": "#/definitions/geometry/controlPoints" }
+                    "patches":      { 
+                        "type": "array",
+                        "items": { "$ref": "#/definitions/geometry/bezierPatchC2" }
+                    }
                 },
                 "required": ["objectType", "id", "patches"],
                 "additionalProperties": false
