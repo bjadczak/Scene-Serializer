@@ -11,11 +11,12 @@
 
 namespace MG1
 {
-	Scene SceneSerializer::LoadScene(std::filesystem::path path)
+	Scene& SceneSerializer::LoadScene(std::filesystem::path path)
 	{
 		auto document = LoadAndValidate(path);
 
-		Scene resultScene;
+		auto& resultScene = Scene::Get();
+		resultScene.Clear();
 
 		for (auto& point : document["points"])
 		{
@@ -47,14 +48,25 @@ namespace MG1
 				InterpolatedC2 b = element;
 				resultScene.interpolatedC2.push_back(b);
 			}
+			else if (elementType == "bezierSurfaceC0")
+			{
+				BezierSurfaceC0 s = element;
+				resultScene.surfacesC0.push_back(s);
+			}
+			else if (elementType == "bezierSurfaceC2")
+			{
+				BezierSurfaceC2 s = element;
+				resultScene.surfacesC2.push_back(s);
+			}
 		}
 
 		return resultScene;
 	}
 	
-	void SceneSerializer::SaveScene(const Scene& scene, std::filesystem::path path)
+	void SceneSerializer::SaveScene(std::filesystem::path path)
 	{
-		// TODO: write the damn method
+		auto& scene = Scene::Get();
+
 		nlohmann::json dumpDocument;
 
 		auto points = nlohmann::json::array();
@@ -84,6 +96,16 @@ namespace MG1
 		}
 
 		for (auto& obj : scene.interpolatedC2)
+		{
+			geometry.push_back(obj);
+		}
+
+		for (auto& obj : scene.surfacesC0)
+		{
+			geometry.push_back(obj);
+		}
+
+		for (auto& obj : scene.surfacesC2)
 		{
 			geometry.push_back(obj);
 		}

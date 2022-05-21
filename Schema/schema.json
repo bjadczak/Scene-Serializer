@@ -14,7 +14,9 @@
                     { "$ref": "#/definitions/geometry/torus" },
                     { "$ref": "#/definitions/geometry/bezierC0" },
                     { "$ref": "#/definitions/geometry/bezierC2" },
-                    { "$ref": "#/definitions/geometry/interpolatedC2" }
+                    { "$ref": "#/definitions/geometry/interpolatedC2" },
+                    { "$ref": "#/definitions/geometry/bezierSurfaceC0" },
+                    { "$ref": "#/definitions/geometry/bezierSurfaceC2" }
                 ]
             }
         }
@@ -87,6 +89,13 @@
                 "items": { "$ref": "#/definitions/geometry/pointRef" }
             },
 
+            "patchControlPoints": {
+                "type": "array",
+                "items": { "$ref": "#/definitions/geometry/pointRef" },
+                "minItems": 16,
+                "maxItems": 16
+            },
+
             "torus": {
                 "type": "object",
                 "properties": {
@@ -135,6 +144,60 @@
                     "controlPoints":    { "$ref": "#/definitions/geometry/controlPoints" }
                 },
                 "required": ["objectType", "id", "controlPoints"],
+                "additionalProperties": false
+            },
+
+            "bezierPatchC0": {
+                "type": "object",
+                "properties": {
+                    "objectType":       { "const": "bezierPatchC0" },
+                    "id":               { "$ref": "#/definitions/uint" },
+                    "name":             { "type": "string" },
+                    "controlPoints":    { "$ref": "#/definitions/geometry/patchControlPoints" }
+                },
+                "required": ["objectType", "id", "controlPoints"],
+                "additionalProperties": false
+            },
+
+            "bezierSurfaceC0": {
+                "type": "object",
+                "properties": {
+                    "objectType":   { "const": "bezierSurfaceC0" },
+                    "id":           { "$ref": "#/definitions/uint" },
+                    "name":         { "type": "string" },
+                    "patches":      { 
+                        "type": "array",
+                        "items": { "$ref": "#/definitions/geometry/bezierPatchC0" }
+                    }
+                },
+                "required": ["objectType", "id", "patches"],
+                "additionalProperties": false
+            },
+
+            "bezierPatchC2": {
+                "type": "object",
+                "properties": {
+                    "objectType":       { "const": "bezierPatchC2" },
+                    "id":               { "$ref": "#/definitions/uint" },
+                    "name":             { "type": "string" },
+                    "controlPoints":    { "$ref": "#/definitions/geometry/patchControlPoints" }
+                },
+                "required": ["objectType", "id", "controlPoints"],
+                "additionalProperties": false
+            },
+
+            "bezierSurfaceC2": {
+                "type": "object",
+                "properties": {
+                    "objectType":   { "const": "bezierSurfaceC2" },
+                    "id":           { "$ref": "#/definitions/uint" },
+                    "name":         { "type": "string" },
+                    "patches":      { 
+                        "type": "array",
+                        "items": { "$ref": "#/definitions/geometry/bezierPatchC2" }
+                    }
+                },
+                "required": ["objectType", "id", "patches"],
                 "additionalProperties": false
             }
         }

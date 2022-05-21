@@ -36,16 +36,16 @@
     <ClInclude Include="Models\Torus.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Models\BezierC0.h">
+    <ClInclude Include="Models\Curves\BezierC0.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Models\BezierC2.h">
+    <ClInclude Include="Models\Curves\BezierC2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Models\InterpolatedC2.h">
+    <ClInclude Include="Models\Curves\InterpolatedC2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Models\Bezier.h">
+    <ClInclude Include="Models\Curves\Bezier.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Scene\Scene.h">
@@ -54,13 +54,28 @@
     <ClInclude Include="Scene\SceneSerializer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Models\PointRef.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Serializer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Resources\Schema.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\Surfaces\BezierPatch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\Surfaces\BezierPatchC0.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\Surfaces\BezierPatchC2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\Surfaces\BezierSurfaceC0.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\Surfaces\BezierSurfaceC2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\PointRef.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -74,28 +89,43 @@
     <ClCompile Include="Models\Point.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Models\PointRef.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Utils\Float3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Utils\Uint2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Models\BezierC0.cpp">
+    <ClCompile Include="Models\Curves\BezierC0.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Models\BezierC2.cpp">
+    <ClCompile Include="Models\Curves\BezierC2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Models\InterpolatedC2.cpp">
+    <ClCompile Include="Models\Curves\InterpolatedC2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Models\Torus.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Scene\SceneSerializer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Models\Surfaces\BezierPatchC0.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Models\Surfaces\BezierPatchC2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Scene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Models\Surfaces\BezierSurfaceC0.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Models\Surfaces\BezierSurfaceC2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Models\PointRef.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

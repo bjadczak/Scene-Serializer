@@ -1,10 +1,15 @@
 #pragma once
 
 #include <vector>
+#include <map>
 
-#include <Models/BezierC0.h>
-#include <Models/BezierC2.h>
-#include <Models/InterpolatedC2.h>
+#include <Models/Curves/BezierC0.h>
+#include <Models/Curves/BezierC2.h>
+#include <Models/Curves/InterpolatedC2.h>
+
+#include <Models/Surfaces/BezierSurfaceC0.h>
+#include <Models/Surfaces/BezierSurfaceC2.h>
+
 #include <Models/Point.h>
 #include <Models/Torus.h>
 
@@ -13,7 +18,9 @@ namespace MG1
 	class Scene
 	{
 	public:
-		explicit Scene() = default;
+		static Scene& Get();
+
+		void Clear();
 
 		std::vector<Point> points;
 		std::vector<Torus> tori;
@@ -22,6 +29,12 @@ namespace MG1
 		std::vector<BezierC2> bezierC2;
 		std::vector<InterpolatedC2> interpolatedC2;
 
-		friend class SceneSerializer;
+		std::vector<BezierSurfaceC0> surfacesC0;
+		std::vector<BezierSurfaceC2> surfacesC2;
+
+	protected:
+		explicit Scene() = default;
+
+		static std::shared_ptr<Scene> s_instance;
 	};
 }
