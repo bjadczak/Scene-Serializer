@@ -175,6 +175,7 @@
     <ClInclude Include="Resources\Schema.h" />
     <ClInclude Include="Scene\Scene.h" />
     <ClInclude Include="Scene\SceneSerializer.h" />
+    <ClInclude Include="Scene\SerializerException.h" />
     <ClInclude Include="Serializable.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Serializer.h" />
