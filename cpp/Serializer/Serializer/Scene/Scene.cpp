@@ -17,6 +17,10 @@ namespace MG1
 	
 	void Scene::Clear()
 	{
+		SceneObject::s_firstFreeId = 1;
+		SceneObject::s_freedIds = std::stack<uint32_t>();
+		SceneObject::s_takenIds.clear();
+
 		points.clear();
 		tori.clear();
 
@@ -26,5 +30,7 @@ namespace MG1
 
 		surfacesC0.clear();
 		surfacesC2.clear();
+
+		Point::s_pointMap.clear();
 	}
 }

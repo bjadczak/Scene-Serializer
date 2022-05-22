@@ -78,6 +78,9 @@
     <ClInclude Include="Models\PointRef.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Scene\SerializerException.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">

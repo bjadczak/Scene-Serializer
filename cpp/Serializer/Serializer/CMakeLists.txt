@@ -28,6 +28,7 @@ set(MODEL_FILES
 )
 
 set(SCENE_FILES
+        Scene/SerializerException.h
         Scene/SceneSerializer.h
         Scene/Scene.h
         Scene/SceneSerializer.cpp

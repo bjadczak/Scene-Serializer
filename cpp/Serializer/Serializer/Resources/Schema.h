@@ -111,9 +111,11 @@ inline static const std::string g_schema = R"(
                     "position":     { "$ref": "#/definitions/float3" },
                     "rotation":     { "$ref": "#/definitions/float3" },
                     "scale":        { "$ref": "#/definitions/float3" },
-                    "samples":      { "$ref": "#/definitions/uint2" }
+                    "samples":      { "$ref": "#/definitions/uint2" },
+                    "smallRadius":  { "type": "number", "minimum": 0.0 },
+                    "largeRadius":  { "type": "number", "minimum": 0.0 }
                 },
-                "required": ["objectType", "id", "position", "rotation", "scale", "samples"],
+                "required": ["objectType", "id", "position", "rotation", "scale", "samples", "smallRadius", "largeRadius"],
                 "additionalProperties": false
             },
 

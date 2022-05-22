@@ -24,6 +24,7 @@ namespace MG1
 		friend void from_json(const nlohmann::json& j, Point& p);
 
 		friend class PointRef;
+		friend class Scene;
 
 	protected:
 		// TODO: check if this is really necessary - works nice with PointRefs, but it's pretty ugly

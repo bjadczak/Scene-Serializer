@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "PointRef.h"
 
+#include <Scene/SerializerException.h>
+
 namespace MG1
 {
 	PointRef::PointRef(uint32_t id)
@@ -8,7 +10,7 @@ namespace MG1
 	{
 		if (Point::s_pointMap.find(id) == Point::s_pointMap.end())
 		{
-			m_id = -1;
+			throw SerializerException("No referenced point");
 		}
 	}
 	
