@@ -3,4 +3,4 @@
 	url = https://github.com/tristanpenman/valijson.git
 [submodule "cpp/Serializer/dependencies/json"]
 	path = cpp/Serializer/dependencies/json
-	url = https://github.com/nlohmann/json
+	url = https://github.com/nlohmann/json.git
