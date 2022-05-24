@@ -9,16 +9,4 @@ namespace MG1
 		: m_id(id)
 	{
 	}
-	
-	Point* PointRef::GetPoint() const
-	{
-		auto result = Point::s_pointMap.find(m_id);
-
-		if (result == Point::s_pointMap.end())
-		{
-			return nullptr;
-		}
-
-		return result->second;
-	}
 }

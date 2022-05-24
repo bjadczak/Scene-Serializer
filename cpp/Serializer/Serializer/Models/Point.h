@@ -16,8 +16,6 @@ namespace MG1
 		explicit Point();
 		Point(const Point& other) = default;
 
-		virtual bool SetId(uint32_t id) override;
-
 		Float3 position;
 
 		friend void to_json(nlohmann::json& j, const Point& p);
@@ -25,9 +23,5 @@ namespace MG1
 
 		friend class PointRef;
 		friend class Scene;
-
-	protected:
-		// TODO: check if this is really necessary - works nice with PointRefs, but it's pretty ugly
-		static std::map<uint32_t, Point*> s_pointMap;
 	};
 }

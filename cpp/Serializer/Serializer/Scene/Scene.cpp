@@ -30,7 +30,5 @@ namespace MG1
 
 		surfacesC0.clear();
 		surfacesC2.clear();
-
-		Point::s_pointMap.clear();
 	}
 }
