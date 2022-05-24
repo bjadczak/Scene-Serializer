@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "Scene.h"
 
+#include <algorithm>
+
 namespace MG1
 {
 	std::shared_ptr<Scene> Scene::s_instance = nullptr;
@@ -30,5 +32,63 @@ namespace MG1
 
 		surfacesC0.clear();
 		surfacesC2.clear();
+	}
+	
+	bool Scene::IsValid() const
+	{
+		std::set<uint32_t> loadedPoints;
+
+		// load all the points' ids
+		for (auto& point : points)
+		{
+			loadedPoints.insert(point.GetId());
+		}
+
+		// validate if all control points exist
+		for (auto& c : bezierC0)
+		{
+			if (std::any_of(c.controlPoints.begin(), c.controlPoints.end(), [&loadedPoints](PointRef ref) { return loadedPoints.find(ref.GetId()) != loadedPoints.end(); }))
+			{
+				return false;
+			}
+		}
+
+		for (auto& c : bezierC2)
+		{
+			if (std::any_of(c.controlPoints.begin(), c.controlPoints.end(), [&loadedPoints](PointRef ref) { return loadedPoints.find(ref.GetId()) != loadedPoints.end(); }))
+			{
+				return false;
+			}
+		}
+
+		for (auto& c : interpolatedC2)
+		{
+			if (std::any_of(c.controlPoints.begin(), c.controlPoints.end(), [&loadedPoints](PointRef ref) { return loadedPoints.find(ref.GetId()) != loadedPoints.end(); }))
+			{
+				return false;
+			}
+		}
+
+		for (auto& surface : surfacesC0)
+		{
+			for (auto& patch : surface.patches)
+			{
+				if (std::any_of(patch.controlPoints.begin(), patch.controlPoints.end(), [&loadedPoints](PointRef ref) { return loadedPoints.find(ref.GetId()) != loadedPoints.end(); }))
+				{
+					return false;
+				}
+			}
+		}
+
+		for (auto& surface : surfacesC2)
+		{
+			for (auto& patch : surface.patches)
+			{
+				if (std::any_of(patch.controlPoints.begin(), patch.controlPoints.end(), [&loadedPoints](PointRef ref) { return loadedPoints.find(ref.GetId()) != loadedPoints.end(); }))
+				{
+					return false;
+				}
+			}
+		}
 	}
 }
