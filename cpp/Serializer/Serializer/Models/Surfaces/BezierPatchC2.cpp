@@ -17,7 +17,7 @@ namespace MG1
 		);
 
 		j = {
-			{ "objectType", "bezierPatchC0" },
+			{ "objectType", "bezierPatchC2" },
 			{ "id", p.m_id },
 			{ "name", p.name },
 			{ "controlPoints", points },
