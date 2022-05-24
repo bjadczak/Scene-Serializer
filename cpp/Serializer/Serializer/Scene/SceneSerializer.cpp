@@ -20,9 +20,14 @@ namespace MG1
 		auto& resultScene = Scene::Get();
 		resultScene.Clear();
 
+		std::set<uint32_t> loadedPoints;
+
 		for (auto& point : document["points"])
 		{
-			resultScene.points.push_back(point);
+			Point p = point;
+			resultScene.points.push_back(p);
+
+			loadedPoints.insert(p.GetId());
 		}
 
 		for (auto& element : document["geometry"])
@@ -38,26 +43,62 @@ namespace MG1
 			else if (elementType == "bezierC0")
 			{
 				BezierC0 b = element;
+
+				if (std::any_of(b.controlPoints.begin(), b.controlPoints.end(), [&loadedPoints](PointRef p) { return loadedPoints.find(p.GetId()) == loadedPoints.end(); }))
+				{
+					throw SerializerException("File corrupted - no point of given id found");
+				}
+
 				resultScene.bezierC0.push_back(b);
 			}
 			else if (elementType == "bezierC2")
 			{
 				BezierC2 b = element;
+
+				if (std::any_of(b.controlPoints.begin(), b.controlPoints.end(), [&loadedPoints](PointRef p) { return loadedPoints.find(p.GetId()) == loadedPoints.end(); }))
+				{
+					throw SerializerException("File corrupted - no point of given id found");
+				}
+
 				resultScene.bezierC2.push_back(b);
 			}
 			else if (elementType == "interpolatedC2")
 			{
 				InterpolatedC2 b = element;
+
+				if (std::any_of(b.controlPoints.begin(), b.controlPoints.end(), [&loadedPoints](PointRef p) { return loadedPoints.find(p.GetId()) == loadedPoints.end(); }))
+				{
+					throw SerializerException("File corrupted - no point of given id found");
+				}
+
 				resultScene.interpolatedC2.push_back(b);
 			}
 			else if (elementType == "bezierSurfaceC0")
 			{
 				BezierSurfaceC0 s = element;
+
+				for (auto& patch : s.patches)
+				{
+					if (std::any_of(patch.controlPoints.begin(), patch.controlPoints.end(), [&loadedPoints](PointRef p) { return loadedPoints.find(p.GetId()) == loadedPoints.end(); }))
+					{
+						throw SerializerException("File corrupted - no point of given id found");
+					}
+				}
+
 				resultScene.surfacesC0.push_back(s);
 			}
 			else if (elementType == "bezierSurfaceC2")
 			{
 				BezierSurfaceC2 s = element;
+
+				for (auto& patch : s.patches)
+				{
+					if (std::any_of(patch.controlPoints.begin(), patch.controlPoints.end(), [&loadedPoints](PointRef p) { return loadedPoints.find(p.GetId()) == loadedPoints.end(); }))
+					{
+						throw SerializerException("File corrupted - no point of given id found");
+					}
+				}
+
 				resultScene.surfacesC2.push_back(s);
 			}
 		}
