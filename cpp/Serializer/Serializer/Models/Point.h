@@ -16,6 +16,8 @@ namespace MG1
 		explicit Point();
 		Point(const Point& other) = default;
 
+		virtual bool SetId(uint32_t id) override { return SceneObject::SetId(id); }
+
 		Float3 position;
 
 		friend void to_json(nlohmann::json& j, const Point& p);
