@@ -47,7 +47,7 @@ namespace MG1
 		// validate if all control points exist
 		for (auto& c : bezierC0)
 		{
-			if (std::any_of(c.controlPoints.begin(), c.controlPoints.end(), [&loadedPoints](PointRef ref) { return loadedPoints.find(ref.GetId()) != loadedPoints.end(); }))
+			if (std::any_of(c.controlPoints.begin(), c.controlPoints.end(), [&loadedPoints](PointRef ref) { return loadedPoints.find(ref.GetId()) == loadedPoints.end(); }))
 			{
 				return false;
 			}
@@ -55,7 +55,7 @@ namespace MG1
 
 		for (auto& c : bezierC2)
 		{
-			if (std::any_of(c.controlPoints.begin(), c.controlPoints.end(), [&loadedPoints](PointRef ref) { return loadedPoints.find(ref.GetId()) != loadedPoints.end(); }))
+			if (std::any_of(c.controlPoints.begin(), c.controlPoints.end(), [&loadedPoints](PointRef ref) { return loadedPoints.find(ref.GetId()) == loadedPoints.end(); }))
 			{
 				return false;
 			}
@@ -63,7 +63,7 @@ namespace MG1
 
 		for (auto& c : interpolatedC2)
 		{
-			if (std::any_of(c.controlPoints.begin(), c.controlPoints.end(), [&loadedPoints](PointRef ref) { return loadedPoints.find(ref.GetId()) != loadedPoints.end(); }))
+			if (std::any_of(c.controlPoints.begin(), c.controlPoints.end(), [&loadedPoints](PointRef ref) { return loadedPoints.find(ref.GetId()) == loadedPoints.end(); }))
 			{
 				return false;
 			}
@@ -73,7 +73,7 @@ namespace MG1
 		{
 			for (auto& patch : surface.patches)
 			{
-				if (std::any_of(patch.controlPoints.begin(), patch.controlPoints.end(), [&loadedPoints](PointRef ref) { return loadedPoints.find(ref.GetId()) != loadedPoints.end(); }))
+				if (std::any_of(patch.controlPoints.begin(), patch.controlPoints.end(), [&loadedPoints](PointRef ref) { return loadedPoints.find(ref.GetId()) == loadedPoints.end(); }))
 				{
 					return false;
 				}
@@ -84,11 +84,13 @@ namespace MG1
 		{
 			for (auto& patch : surface.patches)
 			{
-				if (std::any_of(patch.controlPoints.begin(), patch.controlPoints.end(), [&loadedPoints](PointRef ref) { return loadedPoints.find(ref.GetId()) != loadedPoints.end(); }))
+				if (std::any_of(patch.controlPoints.begin(), patch.controlPoints.end(), [&loadedPoints](PointRef ref) { return loadedPoints.find(ref.GetId()) == loadedPoints.end(); }))
 				{
 					return false;
 				}
 			}
 		}
+
+		return true;
 	}
 }
