@@ -23,7 +23,7 @@ namespace MG1
 			{ "id", p.m_id },
 			{ "size", p.size },
 			{ "parameterWrapped", wrapped },
-			{ "objectType", "bezierSurfaceC0" },
+			{ "objectType", "bezierSurfaceC2" },
 			{ "patches", patches }
 		};
 	}
