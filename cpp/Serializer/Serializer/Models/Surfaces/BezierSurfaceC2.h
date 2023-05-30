@@ -2,7 +2,7 @@
 
 #include <Models/SceneObject.h>
 #include <Models/Surfaces/BezierPatchC2.h>
-#include <Utils\Uint2.h>
+#include <Utils/Uint2.h>
 
 namespace MG1
 {
