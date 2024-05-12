@@ -14,14 +14,14 @@ namespace MG1
 
 		std::string name;
 
+		static uint32_t s_firstFreeId;
+		static std::set<uint32_t> s_takenIds;
+		static std::stack<uint32_t> s_freedIds;
+
 	protected:
 		uint32_t m_id;
 
 		explicit SceneObject();
 		SceneObject(const SceneObject& obj) = default;
-
-		static uint32_t s_firstFreeId;
-		static std::set<uint32_t> s_takenIds;
-		static std::stack<uint32_t> s_freedIds;
 	};
 }
