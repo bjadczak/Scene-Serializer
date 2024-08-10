@@ -2,12 +2,6 @@ set(BIN_NAME MGSandbox)
 
 add_executable(${BIN_NAME} main.cpp)
 
-# Includowanie output dira, aby uzyskac potzrebne headery z Serializera
-# Jak ktos będzie miec lepszy pomysł jak poprawic zależności pomiędzy Sandboxem a Serializerem to prosze bardzo
-target_include_directories(${BIN_NAME} PRIVATE
-        ${PROJECT_BINARY_DIR}/include/Serializer
-        )
-
 target_link_libraries(${BIN_NAME} PRIVATE MGSerializer)
 
 # [TODO] Przy dodaniu wiekszej ilości sampli przerobić na jakąś pętlę po jsonach
