@@ -56,12 +56,8 @@ set(LIBRARY_FILES
     Serializable.h
     Serializer.h
 )
-add_library(${LIBRARY_NAME} STATIC ${LIBRARY_FILES} )
 
-# To jedyne co przyszło mi do głowy aby kopiowac wszystkie headery do build dira
-# Jak ktos będzie miec lepszy pomysł jak poprawic zależności pomiędzy Sandboxem a Serializerem to prosze bardzo
-file(COPY ${CMAKE_CURRENT_SOURCE_DIR}
-        DESTINATION ${PROJECT_BINARY_DIR}/include
-        FILES_MATCHING
-        PATTERN *.h
-        )
+add_library(${LIBRARY_NAME} STATIC ${LIBRARY_FILES})
+
+# TODO: determine which files are really needed for the user by creating a include subdir
+target_include_directories(${LIBRARY_NAME} PUBLIC .)
